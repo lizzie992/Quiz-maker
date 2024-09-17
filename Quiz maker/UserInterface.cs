@@ -9,12 +9,20 @@ namespace Quiz_maker
 {
     public class UserInterface
     {
+
+        public static void PrintInstructionMenu()
+        {
+            Console.WriteLine($"Welcome to our game!\r\nYou have 2 options:\r\nQuizmaker mode - where you can build up your quiz with questions and answers\r\nPlay mode - where you can play with the quiz you created\r\n" +
+                $"Please, press 'Q' for Quizmaker mode and 'P' for Play mode\r\n" +
+                $"To close the application please select 'C'\r\n");
+        }
+
+
         public static void printInstructionQuizMaker(int numberOfQuestions, int numberOfAllAnswers, int numberOfCorrectAnswers)
         {
             Console.WriteLine($"Welcome to our Quiz Maker game!\r\n" +
                 $"You will be asked to give us {numberOfQuestions} questions, with {numberOfAllAnswers} answer options for each question.\r\n" +
-                $"{numberOfCorrectAnswers} of those answers have to be correct!\r\n" +
-                $"Then we will ask you these questions and you have to select the correct answer(s)!\r\n");
+                $"{numberOfCorrectAnswers} of those answers have to be correct!\r\n");
         }
 
         public static void pressKeyToMoveOn()
