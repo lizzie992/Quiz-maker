@@ -10,7 +10,7 @@ namespace Quiz_maker
 {
     public class LogicalCode
     {
-        public static void Serializer(string path, string question, List<string> correctAnswers, List<string> wrongAnswers)
+        public static void SaveQuizToFile(string path, string question, List<string> correctAnswers, List<string> allAnswers)
         {
             //to be continued on a later phase :)
         }

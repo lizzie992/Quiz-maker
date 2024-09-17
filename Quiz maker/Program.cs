@@ -22,9 +22,9 @@ namespace Quiz_maker
                 }
                 for (int j = 0; j < Constants.NUMBER_OF_WRONG_ANSWERS; j++)
                 {
-                    quiz.wrongAnswers.Add(UserInterface.getWrongAnswer().ToLower());
+                    quiz.allAnswers.Add(UserInterface.getWrongAnswer().ToLower());
                 }
-                LogicalCode.Serializer(Constants.FILEPATH, quiz.question, quiz.correctAnswers, quiz.wrongAnswers);
+                LogicalCode.SaveQuizToFile(Constants.FILEPATH, quiz.question, quiz.correctAnswers, quiz.allAnswers);
                 UserInterface.pressKeyToMoveOn();
                 UserInterface.clearScreen();
 
@@ -32,7 +32,6 @@ namespace Quiz_maker
 
             //playing the quiz:
             quiz.allAnswers.AddRange(quiz.correctAnswers);
-            quiz.allAnswers.AddRange(quiz.wrongAnswers);
             quiz.allAnswers = LogicalCode.ShuffleTheList(Constants.NUMBER_OF_ALL_ANSWERS, quiz.allAnswers);
             int points = 0;
             UserInterface.PrintInstructionGame();
