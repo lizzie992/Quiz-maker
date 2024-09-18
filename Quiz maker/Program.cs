@@ -21,12 +21,14 @@ namespace Quiz_maker
                 if (gameMode == quizmaker)
                 {
                     UserInterface.clearScreen();
-                    UserInterface.printInstructionQuizMaker(Constants.NUMBER_OF_QUESTIONS, Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
+                    UserInterface.printInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
                     UserInterface.pressKeyToMoveOn();
                     UserInterface.clearScreen();
 
+                    int numberOfQuestions = 0;
+                    numberOfQuestions = UserInterface.askUserHowManyQuestions(numberOfQuestions);
 
-                    for (int i = 0; i < Constants.NUMBER_OF_QUESTIONS; i++)
+                    for (int i = 0; i < numberOfQuestions; i++)
                     {
                         quiz.question = UserInterface.getQuestionFromUser();
 

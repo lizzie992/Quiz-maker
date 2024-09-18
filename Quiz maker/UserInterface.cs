@@ -18,11 +18,18 @@ namespace Quiz_maker
         }
 
 
-        public static void printInstructionQuizMaker(int numberOfQuestions, int numberOfAllAnswers, int numberOfCorrectAnswers)
+        public static void printInstructionQuizMaker(int numberOfAllAnswers, int numberOfCorrectAnswers)
         {
             Console.WriteLine($"Welcome to our Quiz Maker game!\r\n" +
-                $"You will be asked to give us {numberOfQuestions} questions, with {numberOfAllAnswers} answer options for each question.\r\n" +
+                $"You will be asked to give us some questions, with {numberOfAllAnswers} answer options for each question.\r\n" +
                 $"{numberOfCorrectAnswers} of those answers have to be correct!\r\n");
+        }
+
+        public static int  askUserHowManyQuestions(int numberOfQuestions)
+        {
+            Console.WriteLine($"Please give me the number, how many questions you would like to add this time: \r\n");
+            numberOfQuestions = Convert.ToInt32(Console.ReadLine());
+            return numberOfQuestions;
         }
 
         public static void pressKeyToMoveOn()
@@ -72,7 +79,7 @@ namespace Quiz_maker
 
         public static void PrintInstructionGame()
         {
-            Console.WriteLine("Welcome to the game! You will get random questions from the ones you gave us, and you need to tpye in the correct answer" +
+            Console.WriteLine("Welcome to the game! You will get random questions from the ones you gave us, and you need to give us the number of the correct answer" +
                 $"\r\nWith every win, you will get {Constants.WIN_POINTS} points, and with every mistake, you will lose {Constants.LOSE_POINTS} points");
         }
 
