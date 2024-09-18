@@ -13,8 +13,8 @@ namespace Quiz_maker
         public static void PrintInstructionMenu()
         {
             Console.WriteLine($"Welcome to our game!\r\nYou have 2 options:\r\nQuizmaker mode - where you can build up your quiz with questions and answers\r\nPlay mode - where you can play with the quiz you created\r\n" +
-                $"Please, press 'Q' for Quizmaker mode and 'P' for Play mode\r\n" +
-                $"To close the application please select 'C'\r\n");
+                $"Please, press {Constants.QUIZMAKER} for Quizmaker mode and {Constants.PLAY} for Play mode\r\n" +
+                $"To close the application please select {Constants.CLOSE}\r\n");
         }
 
 
