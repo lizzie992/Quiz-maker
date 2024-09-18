@@ -8,9 +8,7 @@ namespace Quiz_maker
         {
 
             string gameMode = string.Empty;
-            string quizmaker = "q";
-            string play = "p";
-            string close = "c";
+
             Quiz quiz = new Quiz();
 
             do
@@ -18,7 +16,7 @@ namespace Quiz_maker
                 UserInterface.PrintInstructionMenu();
                 gameMode = Console.ReadLine().ToLower();
 
-                if (gameMode == quizmaker)
+                if (gameMode == Constants.QUIZMAKER)
                 {
                     UserInterface.clearScreen();
                     UserInterface.printInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
@@ -46,7 +44,7 @@ namespace Quiz_maker
                     }
                 }
 
-                if (gameMode == play)
+                if (gameMode == Constants.PLAY)
                 {
                     UserInterface.clearScreen();
                     quiz.allAnswers.AddRange(quiz.correctAnswers);
@@ -77,11 +75,11 @@ namespace Quiz_maker
                     } while (!LogicalCode.CheckIfAnswerIsCorrect(answer, quiz.allAnswers, quiz.correctAnswers));
                 }
 
-                if (gameMode == close)
+                if (gameMode == Constants.CLOSE)
                 {
                     break;
                 }
-            } while (gameMode != close);
+            } while (gameMode != Constants.CLOSE);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Quiz_maker
         public const string FILEPATH = "..."; //to be added:)
         public const int WIN_POINTS = 3;
         public const int LOSE_POINTS = 1;
-
+        public const string QUIZMAKER = "q";
+        public const string PLAY = "p";
+        public const string CLOSE = "c";
     }
 }
