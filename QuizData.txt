@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Quiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <question>Sky color?</question>
+  <correctAnswers>
+    <string>blue</string>
+  </correctAnswers>
+  <allAnswers>
+    <string>green</string>
+    <string>red</string>
+    <string>yellow</string>
+  </allAnswers>
+</Quiz>

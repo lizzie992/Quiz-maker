@@ -43,7 +43,7 @@ namespace Quiz_maker
                         {
                             QuizData.allAnswers.Add(UserInterface.getWrongAnswer().ToLower());
                         }
-
+                        LogicalCode.SaveQuizToFile(QuizData);
                         UserInterface.pressKeyToMoveOn();
                         UserInterface.clearScreen();
                     }

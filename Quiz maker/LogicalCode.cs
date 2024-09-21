@@ -12,9 +12,14 @@ namespace Quiz_maker
     public class LogicalCode
     {
 
-        public static void SaveQuizToFile(string path)
+        public static void SaveQuizToFile(Quiz QuizData)
         {
-            //to be continued
+            XmlSerializer writer = new XmlSerializer(typeof(Quiz));
+            var path = @"..\..\..\..\QuizData.txt";
+            using (FileStream file = File.Create(path))
+            {
+                writer.Serialize(file, QuizData);
+            }
         }
 
         public static int GetRandom(int numberOfQuestions)
