@@ -12,6 +12,7 @@ namespace Quiz_maker
     public class LogicalCode
     {
 
+
         public static void SaveQuizToFile(Quiz QuizData)
         {
             XmlSerializer writer = new XmlSerializer(typeof(Quiz));
