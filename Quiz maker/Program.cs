@@ -15,30 +15,35 @@ namespace Quiz_maker
             {
                 UserInterface.PrintInstructionMenu();
                 gameMode = Console.ReadLine().ToLower();
+                UserInterface.pressKeyToMoveOn();
+                UserInterface.clearScreen();
 
                 if (gameMode == Constants.QUIZMAKER)
                 {
-                    UserInterface.clearScreen();
                     UserInterface.printInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
                     UserInterface.pressKeyToMoveOn();
                     UserInterface.clearScreen();
 
                     int numberOfQuestions = 0;
                     numberOfQuestions = UserInterface.askUserHowManyQuestions(numberOfQuestions);
+                    UserInterface.pressKeyToMoveOn();
+                    UserInterface.clearScreen();
 
                     for (int i = 0; i < numberOfQuestions; i++)
                     {
-                        quiz.question = UserInterface.getQuestionFromUser();
+                        Quiz QuizData = new Quiz();
+
+                        QuizData.question = UserInterface.getQuestionFromUser();
 
                         for (int j = 0; j < Constants.NUMBER_OF_CORRECT_ANSWERS; j++)
                         {
-                            quiz.correctAnswers.Add(UserInterface.getCorrectAnswer().ToLower());
+                            QuizData.correctAnswers.Add(UserInterface.getCorrectAnswer().ToLower());
                         }
                         for (int j = 0; j < Constants.NUMBER_OF_WRONG_ANSWERS; j++)
                         {
-                            quiz.allAnswers.Add(UserInterface.getWrongAnswer().ToLower());
+                            QuizData.allAnswers.Add(UserInterface.getWrongAnswer().ToLower());
                         }
-                        LogicalCode.SaveQuizToFile(Constants.FILEPATH, quiz.question, quiz.correctAnswers, quiz.allAnswers);
+
                         UserInterface.pressKeyToMoveOn();
                         UserInterface.clearScreen();
                     }
@@ -46,7 +51,6 @@ namespace Quiz_maker
 
                 if (gameMode == Constants.PLAY)
                 {
-                    UserInterface.clearScreen();
                     quiz.allAnswers.AddRange(quiz.correctAnswers);
                     quiz.allAnswers = LogicalCode.ShuffleTheList(Constants.NUMBER_OF_ALL_ANSWERS, quiz.allAnswers);
                     int points = 0;

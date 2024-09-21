@@ -5,15 +5,16 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Quiz_maker
 {
     public class LogicalCode
     {
 
-        public static void SaveQuizToFile(string path, string question, List<string> correctAnswers, List<string> allAnswers)
+        public static void SaveQuizToFile(string path)
         {
-            //to be continued on a later phase :)
+            //to be continued
         }
 
         public static int GetRandom(int numberOfQuestions)
