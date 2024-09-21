@@ -16,7 +16,7 @@ namespace Quiz_maker
         {
             XmlSerializer writer = new XmlSerializer(typeof(Quiz));
             var path = @"..\..\..\..\QuizData.txt";
-            using (FileStream file = File.Create(path))
+            using (StreamWriter file = File.AppendText(path)) 
             {
                 writer.Serialize(file, QuizData);
             }
