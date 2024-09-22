@@ -25,27 +25,15 @@ namespace Quiz_maker
                     UserInterface.clearScreen();
 
                     int numberOfQuestions = 0;
-                    numberOfQuestions = UserInterface.askUserHowManyQuestions(numberOfQuestions);
+                    numberOfQuestions = UserInterface.askUserHowManyQuestionsQuizMaker(numberOfQuestions);
                     UserInterface.pressKeyToMoveOn();
                     UserInterface.clearScreen();
                     Quiz QuizData = new Quiz();
 
-                    for (int i = 0; i < numberOfQuestions; i++)
-                    {
+                    UserInterface.CreateQuiz(numberOfQuestions, QuizData.question, QuizData.correctAnswers, QuizData.allAnswers);
+                    UserInterface.pressKeyToMoveOn();
+                    UserInterface.clearScreen();
 
-                        QuizData.question = UserInterface.getQuestionFromUser();
-
-                        for (int j = 0; j < Constants.NUMBER_OF_CORRECT_ANSWERS; j++)
-                        {
-                            QuizData.correctAnswers.Add(UserInterface.getCorrectAnswer().ToLower());
-                        }
-                        for (int j = 0; j < Constants.NUMBER_OF_WRONG_ANSWERS; j++)
-                        {
-                            QuizData.allAnswers.Add(UserInterface.getWrongAnswer().ToLower());
-                        }
-                        UserInterface.pressKeyToMoveOn();
-                        UserInterface.clearScreen();
-                    }
                     LogicalCode.SaveQuizToFile(QuizData);
                 }
 
@@ -54,27 +42,27 @@ namespace Quiz_maker
                     quiz.allAnswers.AddRange(quiz.correctAnswers);
                     quiz.allAnswers = LogicalCode.ShuffleTheList(Constants.NUMBER_OF_ALL_ANSWERS, quiz.allAnswers);
                     int points = 0;
-                    UserInterface.PrintInstructionGame();
+                    UserInterface.PrintInstructionGameMode();
                     //here comes the part where I get a random question out of the file which is not clear for me yet:) so I am working with the 1 set of questions/answers
-                    UserInterface.PrintQuestion(quiz.question);
-                    UserInterface.PrintListOfAnswers(Constants.NUMBER_OF_ALL_ANSWERS, quiz.allAnswers);
+                    UserInterface.PrintQuestionGameMode(quiz.question);
+                    UserInterface.PrintListOfAnswersGameMode(Constants.NUMBER_OF_ALL_ANSWERS, quiz.allAnswers);
                     int answer = 0;
                     do
                     {
-                        answer = Convert.ToInt32(UserInterface.GetAnswerFromPlayer());
+                        answer = Convert.ToInt32(UserInterface.GetAnswerFromPlayerGameMode());
                         if (LogicalCode.CheckIfAnswerIsCorrect(answer, quiz.allAnswers, quiz.correctAnswers))
                         {
-                            UserInterface.PrintWinMessage();
+                            UserInterface.PrintWinMessageGameMode();
                             points = LogicalCode.WinPoints(points);
-                            UserInterface.PrintPoints(points);
+                            UserInterface.PrintPointsGameMode(points);
                             UserInterface.pressKeyToMoveOn();
                             UserInterface.clearScreen();
                         }
                         else
                         {
-                            UserInterface.PrintLoseMessage();
+                            UserInterface.PrintLoseMessageGameMode();
                             points = LogicalCode.LosePoints(points);
-                            UserInterface.PrintPoints(points);
+                            UserInterface.PrintPointsGameMode(points);
                         }
                     } while (!LogicalCode.CheckIfAnswerIsCorrect(answer, quiz.allAnswers, quiz.correctAnswers));
                 }

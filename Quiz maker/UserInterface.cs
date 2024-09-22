@@ -25,7 +25,7 @@ namespace Quiz_maker
                 $"{numberOfCorrectAnswers} of those answers have to be correct!\r\n");
         }
 
-        public static int  askUserHowManyQuestions(int numberOfQuestions)
+        public static int  askUserHowManyQuestionsQuizMaker(int numberOfQuestions)
         {
             Console.WriteLine($"Please give me the number, how many questions you would like to add this time: \r\n");
             numberOfQuestions = Convert.ToInt32(Console.ReadLine());
@@ -43,32 +43,51 @@ namespace Quiz_maker
             Console.Clear();
         }
 
-        public static string getQuestionFromUser()
+        public static string getQuestionFromUserQuizMaker()
         {
             Console.WriteLine($"Please give me your next question: ");
             string question = Console.ReadLine();
             return question;
         }
 
-        public static string getCorrectAnswer()
+        public static string getCorrectAnswerQuizMaker()
         {
             Console.WriteLine($"Please give me a correct answer to this question: ");
             string correctAnswer = Console.ReadLine();
             return correctAnswer;
         }
-        public static string getWrongAnswer()
+        public static string getWrongAnswerQuizMaker()
         {
             Console.WriteLine($"Please give me a wrong answer to this question: ");
             string wrongAnswer = Console.ReadLine();
             return wrongAnswer;
         }
 
-        public static void PrintQuestion(string question)
+
+        public static void CreateQuiz(int numberOfQuestions, string question, List<string> correctAnswers, List<string> allAnswers)
+        {
+            question = getQuestionFromUserQuizMaker();
+            for (int i = 0; i < numberOfQuestions; i++)
+            {
+                for (int j = 0; j < Constants.NUMBER_OF_CORRECT_ANSWERS; j++)
+                {
+                    correctAnswers.Add(getCorrectAnswerQuizMaker().ToLower());
+                }
+                for (int j = 0; j < Constants.NUMBER_OF_WRONG_ANSWERS; j++)
+                {
+                    allAnswers.Add(getWrongAnswerQuizMaker().ToLower());
+                }
+            }
+                
+        }
+
+
+        public static void PrintQuestionGameMode(string question)
         {
             Console.WriteLine(question);
         }
 
-        public static void PrintListOfAnswers(int numberOfAnswers, List<string> List)
+        public static void PrintListOfAnswersGameMode(int numberOfAnswers, List<string> List)
         {
             for (int i = 0; i < numberOfAnswers; i++)
             {
@@ -77,31 +96,31 @@ namespace Quiz_maker
         }
 
 
-        public static void PrintInstructionGame()
+        public static void PrintInstructionGameMode()
         {
             Console.WriteLine("Welcome to the game! You will get random questions from the ones you gave us, and you need to give us the number of the correct answer" +
                 $"\r\nWith every win, you will get {Constants.WIN_POINTS} points, and with every mistake, you will lose {Constants.LOSE_POINTS} points");
         }
 
 
-        public static string GetAnswerFromPlayer()
+        public static string GetAnswerFromPlayerGameMode()
         {
             Console.WriteLine("Give us the number of the correct answer: \r\n");
             string answer = Console.ReadLine();
             return answer;
         }
 
-        public static void PrintWinMessage()
+        public static void PrintWinMessageGameMode()
         {
             Console.WriteLine("Good answer, you won!");
         }
 
-        public static void PrintLoseMessage()
+        public static void PrintLoseMessageGameMode()
         {
             Console.WriteLine("This is not the correct answer, try again!");
         }
 
-        public static void PrintPoints(int points)
+        public static void PrintPointsGameMode(int points)
         {
             Console.WriteLine($"You have {points} points at the moment!");
         }
