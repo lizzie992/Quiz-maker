@@ -28,10 +28,10 @@ namespace Quiz_maker
                     numberOfQuestions = UserInterface.askUserHowManyQuestions(numberOfQuestions);
                     UserInterface.pressKeyToMoveOn();
                     UserInterface.clearScreen();
+                    Quiz QuizData = new Quiz();
 
                     for (int i = 0; i < numberOfQuestions; i++)
                     {
-                        Quiz QuizData = new Quiz();
 
                         QuizData.question = UserInterface.getQuestionFromUser();
 
@@ -43,10 +43,10 @@ namespace Quiz_maker
                         {
                             QuizData.allAnswers.Add(UserInterface.getWrongAnswer().ToLower());
                         }
-                        LogicalCode.SaveQuizToFile(QuizData);
                         UserInterface.pressKeyToMoveOn();
                         UserInterface.clearScreen();
                     }
+                    LogicalCode.SaveQuizToFile(QuizData);
                 }
 
                 if (gameMode == Constants.PLAY)
