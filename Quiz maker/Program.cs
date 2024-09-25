@@ -15,26 +15,24 @@ namespace Quiz_maker
             {
                 UserInterface.PrintInstructionMenu();
                 gameMode = Console.ReadLine().ToLower();
-                UserInterface.pressKeyToMoveOn();
-                UserInterface.clearScreen();
+                UserInterface.PressKeyToMoveOn();
+                UserInterface.ClearScreen();
 
                 if (gameMode == Constants.QUIZMAKER)
                 {
-                    UserInterface.printInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
-                    UserInterface.pressKeyToMoveOn();
-                    UserInterface.clearScreen();
+                    UserInterface.PrintInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
+                    UserInterface.PressKeyToMoveOn(); 
+                    UserInterface.ClearScreen();
 
                     int numberOfQuestions = 0;
-                    numberOfQuestions = UserInterface.askUserHowManyQuestionsQuizMaker(numberOfQuestions);
-                    UserInterface.pressKeyToMoveOn();
-                    UserInterface.clearScreen();
-                    Quiz QuizData = new Quiz();
+                    numberOfQuestions = UserInterface.AskUserHowManyQuestionsQuizMaker(numberOfQuestions);
+                    UserInterface.PressKeyToMoveOn();
+                    UserInterface.ClearScreen();
 
-                    UserInterface.CreateQuiz(numberOfQuestions, QuizData.question, QuizData.correctAnswers, QuizData.allAnswers);
-                    UserInterface.pressKeyToMoveOn();
-                    UserInterface.clearScreen();
-
-                    LogicalCode.SaveQuizToFile(QuizData);
+                    Quiz quizData = UserInterface.CreateQuiz(numberOfQuestions);
+                    LogicalCode.SaveQuizToFile(quizData);
+                    UserInterface.PressKeyToMoveOn();
+                    UserInterface.ClearScreen();
                 }
 
                 if (gameMode == Constants.PLAY)
@@ -55,8 +53,8 @@ namespace Quiz_maker
                             UserInterface.PrintWinMessageGameMode();
                             points = LogicalCode.WinPoints(points);
                             UserInterface.PrintPointsGameMode(points);
-                            UserInterface.pressKeyToMoveOn();
-                            UserInterface.clearScreen();
+                            UserInterface.PressKeyToMoveOn();
+                            UserInterface.ClearScreen();
                         }
                         else
                         {

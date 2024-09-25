@@ -18,45 +18,45 @@ namespace Quiz_maker
         }
 
 
-        public static void printInstructionQuizMaker(int numberOfAllAnswers, int numberOfCorrectAnswers)
+        public static void PrintInstructionQuizMaker(int numberOfAllAnswers, int numberOfCorrectAnswers)
         {
             Console.WriteLine($"Welcome to our Quiz Maker game!\r\n" +
                 $"You will be asked to give us some questions, with {numberOfAllAnswers} answer options for each question.\r\n" +
                 $"{numberOfCorrectAnswers} of those answers have to be correct!\r\n");
         }
 
-        public static int  askUserHowManyQuestionsQuizMaker(int numberOfQuestions)
+        public static int  AskUserHowManyQuestionsQuizMaker(int numberOfQuestions)
         {
             Console.WriteLine($"Please give me the number, how many questions you would like to add this time: \r\n");
             numberOfQuestions = Convert.ToInt32(Console.ReadLine());
             return numberOfQuestions;
         }
 
-        public static void pressKeyToMoveOn()
+        public static void PressKeyToMoveOn()
         {
             Console.WriteLine("Please press a button to move on!");
             Console.ReadKey();
         }
 
-        public static void clearScreen()
+        public static void ClearScreen()
         {
             Console.Clear();
         }
 
-        public static string getQuestionFromUserQuizMaker()
+        public static string GetQuestionFromUserQuizMaker(string question)
         {
             Console.WriteLine($"Please give me your next question: ");
-            string question = Console.ReadLine();
+            question = Console.ReadLine();
             return question;
         }
 
-        public static string getCorrectAnswerQuizMaker()
+        public static string GetCorrectAnswerQuizMaker()
         {
             Console.WriteLine($"Please give me a correct answer to this question: ");
             string correctAnswer = Console.ReadLine();
             return correctAnswer;
         }
-        public static string getWrongAnswerQuizMaker()
+        public static string GetWrongAnswerQuizMaker()
         {
             Console.WriteLine($"Please give me a wrong answer to this question: ");
             string wrongAnswer = Console.ReadLine();
@@ -64,21 +64,22 @@ namespace Quiz_maker
         }
 
 
-        public static void CreateQuiz(int numberOfQuestions, string question, List<string> correctAnswers, List<string> allAnswers)
+        public static Quiz CreateQuiz(int numberOfQuestions)
         {
-            question = getQuestionFromUserQuizMaker();
+            Quiz quizData = new Quiz();
             for (int i = 0; i < numberOfQuestions; i++)
             {
+                quizData.question = GetQuestionFromUserQuizMaker(quizData.question);
                 for (int j = 0; j < Constants.NUMBER_OF_CORRECT_ANSWERS; j++)
                 {
-                    correctAnswers.Add(getCorrectAnswerQuizMaker().ToLower());
+                    quizData.correctAnswers.Add(GetCorrectAnswerQuizMaker().ToLower());
                 }
                 for (int j = 0; j < Constants.NUMBER_OF_WRONG_ANSWERS; j++)
                 {
-                    allAnswers.Add(getWrongAnswerQuizMaker().ToLower());
+                    quizData.allAnswers.Add(GetWrongAnswerQuizMaker().ToLower());
                 }
             }
-                
+            return quizData;    
         }
 
 

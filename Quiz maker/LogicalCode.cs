@@ -16,13 +16,13 @@ namespace Quiz_maker
 
         
 
-        public static void SaveQuizToFile(Quiz QuizData)
+        public static void SaveQuizToFile(Quiz quizData)
         {
             XmlSerializer writer = new XmlSerializer(typeof(Quiz));
             
-            using (StreamWriter file = File.AppendText(Constants.path)) 
+            using (StreamWriter file = File.AppendText(Constants.PATH)) 
             {
-                writer.Serialize(file, QuizData);
+                writer.Serialize(file, quizData);
             }
         }
 
