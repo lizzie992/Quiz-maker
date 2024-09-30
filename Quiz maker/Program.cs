@@ -1,4 +1,5 @@
 ﻿using System.Net.Quic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Quiz_maker
 {
@@ -9,7 +10,7 @@ namespace Quiz_maker
 
             string gameMode = string.Empty;
 
-            Quiz quiz = new Quiz();
+            Quiz Data = new Quiz();
 
             do
             {
@@ -21,34 +22,31 @@ namespace Quiz_maker
                 if (gameMode == Constants.QUIZMAKER)
                 {
                     UserInterface.PrintInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
-                    UserInterface.PressKeyToMoveOn(); 
-                    UserInterface.ClearScreen();
 
                     int numberOfQuestions = 0;
                     numberOfQuestions = UserInterface.AskUserHowManyQuestionsQuizMaker(numberOfQuestions);
                     UserInterface.PressKeyToMoveOn();
                     UserInterface.ClearScreen();
 
-                    Quiz quizData = UserInterface.CreateQuiz(numberOfQuestions);
-                    LogicalCode.SaveQuizToFile(quizData);
+                    Data = UserInterface.CreateQuiz(numberOfQuestions, Data);
+                    LogicalCode.SaveQuizToFile(Data);
                     UserInterface.PressKeyToMoveOn();
-                    UserInterface.ClearScreen();
+                    UserInterface.ClearScreen(); 
                 }
 
                 if (gameMode == Constants.PLAY)
                 {
-                    quiz.allAnswers.AddRange(quiz.correctAnswers);
-                    quiz.allAnswers = LogicalCode.ShuffleTheList(Constants.NUMBER_OF_ALL_ANSWERS, quiz.allAnswers);
+                    Data.allAnswers.AddRange(Data.correctAnswers);
                     int points = 0;
                     UserInterface.PrintInstructionGameMode();
                     //here comes the part where I get a random question out of the file which is not clear for me yet:) so I am working with the 1 set of questions/answers
-                    UserInterface.PrintQuestionGameMode(quiz.question);
-                    UserInterface.PrintListOfAnswersGameMode(Constants.NUMBER_OF_ALL_ANSWERS, quiz.allAnswers);
+                    UserInterface.PrintQuestionGameMode();
+                    UserInterface.PrintListOfAnswersGameMode(Constants.NUMBER_OF_ALL_ANSWERS, Data.allAnswers);
                     int answer = 0;
                     do
                     {
                         answer = Convert.ToInt32(UserInterface.GetAnswerFromPlayerGameMode());
-                        if (LogicalCode.CheckIfAnswerIsCorrect(answer, quiz.allAnswers, quiz.correctAnswers))
+                        if (LogicalCode.CheckIfAnswerIsCorrect(answer, Data.allAnswers, Data.correctAnswers))
                         {
                             UserInterface.PrintWinMessageGameMode();
                             points = LogicalCode.WinPoints(points);
@@ -62,7 +60,7 @@ namespace Quiz_maker
                             points = LogicalCode.LosePoints(points);
                             UserInterface.PrintPointsGameMode(points);
                         }
-                    } while (!LogicalCode.CheckIfAnswerIsCorrect(answer, quiz.allAnswers, quiz.correctAnswers));
+                    } while (!LogicalCode.CheckIfAnswerIsCorrect(answer, Data.allAnswers, Data.correctAnswers));
                 }
 
                 if (gameMode == Constants.CLOSE)

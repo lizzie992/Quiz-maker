@@ -26,16 +26,15 @@ namespace Quiz_maker
             }
         }
 
-        public static int GetRandom(int numberOfQuestions)
+        Random random = new Random();
+        public int GetRandom(int numberOfQuestions)
         {
-            var random = new Random();
             int number = random.Next(0, numberOfQuestions+1);
             return number;
         }
 
-        public static List<string> ShuffleTheList(int numberOfAnswers, List<string> allAnswers)
+        public List<string> ShuffleTheList(int numberOfAnswers, List<string> allAnswers)
         {
-            var random = new Random();
             int number = random.Next(0, numberOfAnswers);
             var shuffledList = allAnswers.OrderBy(_ => random.Next()).ToList();
             return shuffledList;

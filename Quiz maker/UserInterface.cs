@@ -25,7 +25,7 @@ namespace Quiz_maker
                 $"{numberOfCorrectAnswers} of those answers have to be correct!\r\n");
         }
 
-        public static int  AskUserHowManyQuestionsQuizMaker(int numberOfQuestions)
+        public static int AskUserHowManyQuestionsQuizMaker(int numberOfQuestions)
         {
             Console.WriteLine($"Please give me the number, how many questions you would like to add this time: \r\n");
             numberOfQuestions = Convert.ToInt32(Console.ReadLine());
@@ -64,28 +64,40 @@ namespace Quiz_maker
         }
 
 
-        public static Quiz CreateQuiz(int numberOfQuestions)
+
+        public static Quiz CreateQuiz(int numberOfQuestions, Quiz Data)
         {
-            Quiz quizData = new Quiz();
             for (int i = 0; i < numberOfQuestions; i++)
             {
-                quizData.question = GetQuestionFromUserQuizMaker(quizData.question);
+                Data = new Quiz();
+
+                string question = string.Empty;
+                List<string> correctAnswers = new List<string>();
+                List<string> wrongAnswers = new List<string>();
+
+                question = GetQuestionFromUserQuizMaker(question);
+                List<string> listOfQuestions = new List<string>();
+                listOfQuestions.Add(question);
+
                 for (int j = 0; j < Constants.NUMBER_OF_CORRECT_ANSWERS; j++)
                 {
-                    quizData.correctAnswers.Add(GetCorrectAnswerQuizMaker().ToLower());
+                    correctAnswers.Add(GetCorrectAnswerQuizMaker().ToLower());
                 }
                 for (int j = 0; j < Constants.NUMBER_OF_WRONG_ANSWERS; j++)
                 {
-                    quizData.allAnswers.Add(GetWrongAnswerQuizMaker().ToLower());
+                    wrongAnswers.Add(GetWrongAnswerQuizMaker().ToLower());
                 }
+                Data.question.AddRange(listOfQuestions);
+                Data.correctAnswers.AddRange(correctAnswers);
+                Data.allAnswers.AddRange(wrongAnswers);
             }
-            return quizData;    
+            return Data;
         }
 
 
-        public static void PrintQuestionGameMode(string question)
+        public static void PrintQuestionGameMode()
         {
-            Console.WriteLine(question);
+            Console.WriteLine();
         }
 
         public static void PrintListOfAnswersGameMode(int numberOfAnswers, List<string> List)
