@@ -20,7 +20,7 @@ namespace Quiz_maker
         {
             XmlSerializer writer = new XmlSerializer(typeof(Quiz));
             
-            using (StreamWriter file = File.AppendText(Constants.PATH)) 
+            using (FileStream file = File.Create(Constants.PATH)) 
             {
                 writer.Serialize(file, quizData);
             }

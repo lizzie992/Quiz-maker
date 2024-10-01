@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Quiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <question>
-    <string>Question 1 ?</string>
+    <string>Question 1?</string>
+    <string>Question 2?</string>
   </question>
   <correctAnswers>
     <string>blue</string>
+    <string>good answer</string>
   </correctAnswers>
   <allAnswers>
     <string>green</string>
     <string>yellow</string>
     <string>red</string>
-  </allAnswers>
-</Quiz><?xml version="1.0" encoding="utf-8"?>
-<Quiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <question>
-    <string>Question 2 ?</string>
-  </question>
-  <correctAnswers>
-    <string>not blue</string>
-  </correctAnswers>
-  <allAnswers>
-    <string>green</string>
-    <string>red</string>
-    <string>yellow</string>
+    <string>wrong</string>
+    <string>wrong2</string>
+    <string>wrong3</string>
   </allAnswers>
 </Quiz>
