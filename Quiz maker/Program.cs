@@ -28,8 +28,9 @@ namespace Quiz_maker
                     UserInterface.PressKeyToMoveOn();
                     UserInterface.ClearScreen();
 
-                    Data = UserInterface.CreateQuiz(numberOfQuestions, Data);
-                    LogicalCode.SaveQuizToFile(Data);
+                    List<object> listOfAllObjects = new List<object>();
+                    listOfAllObjects = UserInterface.CreateQuiz(numberOfQuestions, Data);
+                    LogicalCode.SaveQuizToFile(listOfAllObjects);
                     UserInterface.PressKeyToMoveOn();
                     UserInterface.ClearScreen(); 
                 }

@@ -14,22 +14,26 @@ namespace Quiz_maker
     public class LogicalCode
     {
 
-        
 
-        public static void SaveQuizToFile(Quiz quizData)
+
+        public static void SaveQuizToFile(List<object> listOfAllObjects)
         {
-            XmlSerializer writer = new XmlSerializer(typeof(Quiz));
-            
-            using (FileStream file = File.Create(Constants.PATH)) 
+            XmlSerializer writer = new XmlSerializer(typeof(List<object>), new[] {typeof(Quiz)});
+
+            using (FileStream file = File.OpenWrite(Constants.PATH))
             {
-                writer.Serialize(file, quizData);
+                writer.Serialize(file, listOfAllObjects);
             }
         }
+
+
+
+
 
         Random random = new Random();
         public int GetRandom(int numberOfQuestions)
         {
-            int number = random.Next(0, numberOfQuestions+1);
+            int number = random.Next(0, numberOfQuestions + 1);
             return number;
         }
 
@@ -43,7 +47,7 @@ namespace Quiz_maker
         public static bool CheckIfAnswerIsCorrect(int answer, List<string> allAnswers, List<string> correctAnswers)
         {
             bool checkAnswer = false;
-            if (correctAnswers.Contains(allAnswers[answer-1]))
+            if (correctAnswers.Contains(allAnswers[answer - 1]))
             {
                 checkAnswer = true;
             }

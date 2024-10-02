@@ -65,11 +65,13 @@ namespace Quiz_maker
 
 
 
-        public static Quiz CreateQuiz(int numberOfQuestions, Quiz Data)
+        public static List<object> CreateQuiz(int numberOfQuestions, Quiz Data)
         {
-            Data = new Quiz();
+            List<object> listOfAllObjects = new List<object>();
+
             for (int i = 0; i < numberOfQuestions; i++)
             {
+                Data = new Quiz();
                 string question = string.Empty;
                 List<string> correctAnswers = new List<string>();
                 List<string> wrongAnswers = new List<string>();
@@ -86,11 +88,15 @@ namespace Quiz_maker
                 {
                     wrongAnswers.Add(GetWrongAnswerQuizMaker().ToLower());
                 }
-                Data.question.AddRange(listOfQuestions);
+
+                Data.question = question;
                 Data.correctAnswers.AddRange(correctAnswers);
                 Data.allAnswers.AddRange(wrongAnswers);
+
+                listOfAllObjects.Add(Data);
+
             }
-            return Data;
+            return listOfAllObjects;
         }
 
 
