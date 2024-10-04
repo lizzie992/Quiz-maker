@@ -16,9 +16,9 @@ namespace Quiz_maker
 
 
 
-        public static void SaveQuizToFile(List<object> listOfAllObjects)
+        public static void SaveQuizToFile(List<Quiz> listOfAllObjects)
         {
-            XmlSerializer writer = new XmlSerializer(typeof(List<object>), new[] {typeof(Quiz)});
+            XmlSerializer writer = new XmlSerializer(typeof(List<Quiz>));
 
             using (FileStream file = File.OpenWrite(Constants.PATH))
             {
