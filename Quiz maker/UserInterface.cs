@@ -67,7 +67,7 @@ namespace Quiz_maker
 
         public static List<object> CreateQuiz(int numberOfQuestions, Quiz Data)
         {
-            List<object> listOfAllObjects = new List<object>();
+            List<object> listOfAllQuizzes = new List<object>();
 
             for (int i = 0; i < numberOfQuestions; i++)
             {
@@ -93,10 +93,10 @@ namespace Quiz_maker
                 Data.correctAnswers.AddRange(correctAnswers);
                 Data.allAnswers.AddRange(wrongAnswers);
 
-                listOfAllObjects.Add(Data);
+                listOfAllQuizzes.Add(Data);
 
             }
-            return listOfAllObjects;
+            return listOfAllQuizzes;
         }
 
 

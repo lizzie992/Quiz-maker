@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
@@ -14,19 +15,26 @@ namespace Quiz_maker
     public class LogicalCode
     {
 
+        
 
-
-        public static void SaveQuizToFile(List<Quiz> listOfAllObjects)
+        public static void SaveQuizToFile(List<object> listOfAllObjects)
         {
-            XmlSerializer writer = new XmlSerializer(typeof(List<Quiz>));
-
+            XmlSerializer serializer = new XmlSerializer(typeof(List<object>), new[] { typeof(Quiz) });
             using (FileStream file = File.OpenWrite(Constants.PATH))
             {
-                writer.Serialize(file, listOfAllObjects);
+                serializer.Serialize(file, listOfAllObjects);
             }
         }
 
-
+        public static List<object> GetQuizFromFile(List<object> listOfAllObjects)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<object>));
+            using (FileStream file = File.OpenRead(Constants.PATH))
+            {
+                listOfAllObjects = serializer.Deserialize(file) as List<object>;
+            }
+            return listOfAllObjects;
+        }
 
 
 
@@ -37,12 +45,13 @@ namespace Quiz_maker
             return number;
         }
 
-        public List<string> ShuffleTheList(int numberOfAnswers, List<string> allAnswers)
+
+        public static void GetRandomQuestionFromList(List<object> listOfAllObjects)
         {
-            int number = random.Next(0, numberOfAnswers);
-            var shuffledList = allAnswers.OrderBy(_ => random.Next()).ToList();
-            return shuffledList;
+
         }
+
+
 
         public static bool CheckIfAnswerIsCorrect(int answer, List<string> allAnswers, List<string> correctAnswers)
         {

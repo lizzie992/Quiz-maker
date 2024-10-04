@@ -11,6 +11,7 @@ namespace Quiz_maker
             string gameMode = string.Empty;
 
             Quiz Data = new Quiz();
+            List<object> listOfAllObjects = new List<object>();
 
             do
             {
@@ -28,7 +29,7 @@ namespace Quiz_maker
                     UserInterface.PressKeyToMoveOn();
                     UserInterface.ClearScreen();
 
-                    List<object> listOfAllObjects = new List<object>();
+
                     listOfAllObjects = UserInterface.CreateQuiz(numberOfQuestions, Data);
                     LogicalCode.SaveQuizToFile(listOfAllObjects);
                     UserInterface.PressKeyToMoveOn();
@@ -40,7 +41,9 @@ namespace Quiz_maker
                     Data.allAnswers.AddRange(Data.correctAnswers);
                     int points = 0;
                     UserInterface.PrintInstructionGameMode();
-                    //here comes the part where I get a random question out of the file which is not clear for me yet:) so I am working with the 1 set of questions/answers
+
+                    listOfAllObjects = LogicalCode.GetQuizFromFile(listOfAllObjects);
+
                     UserInterface.PrintQuestionGameMode();
                     UserInterface.PrintListOfAnswersGameMode(Constants.NUMBER_OF_ALL_ANSWERS, Data.allAnswers);
                     int answer = 0;
