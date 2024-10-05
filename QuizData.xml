@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Quiz>
-    <question>Q1</question>
+    <question>Eye color?</question>
     <correctAnswers>
-      <string>1</string>
+      <string>brown</string>
     </correctAnswers>
-    <allAnswers>
-      <string>2</string>
-      <string>3</string>
-      <string>4</string>
-    </allAnswers>
+    <wrongAnswers>
+      <string>blue</string>
+      <string>green</string>
+      <string>grey</string>
+    </wrongAnswers>
   </Quiz>
   <Quiz>
-    <question>Q2</question>
+    <question>Hair color?</question>
     <correctAnswers>
-      <string>5</string>
+      <string>brunette</string>
     </correctAnswers>
-    <allAnswers>
-      <string>6</string>
-      <string>7</string>
-      <string>8</string>
-    </allAnswers>
+    <wrongAnswers>
+      <string>blonde</string>
+      <string>black</string>
+      <string>red</string>
+    </wrongAnswers>
   </Quiz>
   <Quiz>
-    <question>Q3</question>
+    <question>Favourite place?</question>
     <correctAnswers>
-      <string>a</string>
+      <string>dublin</string>
     </correctAnswers>
-    <allAnswers>
-      <string>s</string>
-      <string>d</string>
-      <string>f</string>
-    </allAnswers>
+    <wrongAnswers>
+      <string>paris</string>
+      <string>london</string>
+      <string>berlin</string>
+    </wrongAnswers>
+  </Quiz>
+  <Quiz>
+    <question>Favourite food?</question>
+    <correctAnswers>
+      <string>pizza</string>
+    </correctAnswers>
+    <wrongAnswers>
+      <string>pasta</string>
+      <string>soup</string>
+      <string>cake</string>
+    </wrongAnswers>
   </Quiz>
 </ArrayOfQuiz>

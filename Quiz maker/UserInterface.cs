@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Quiz_maker
 {
@@ -64,11 +65,11 @@ namespace Quiz_maker
         }
 
 
-
-        public static List<Quiz> CreateQuiz(int numberOfQuestions, Quiz Data)
+        public static Quiz Data = new Quiz();
+        public static List<Quiz> CreateQuiz(int numberOfQuestions)
         {
-            List<Quiz> listOfAllQuizzes = new List<Quiz>();
 
+            List<Quiz> listOfAllQuizzes = new List<Quiz>();
             for (int i = 0; i < numberOfQuestions; i++)
             {
                 Data = new Quiz();
@@ -77,8 +78,6 @@ namespace Quiz_maker
                 List<string> wrongAnswers = new List<string>();
 
                 question = GetQuestionFromUserQuizMaker(question);
-                List<string> listOfQuestions = new List<string>();
-                listOfQuestions.Add(question);
 
                 for (int j = 0; j < Constants.NUMBER_OF_CORRECT_ANSWERS; j++)
                 {
@@ -91,56 +90,79 @@ namespace Quiz_maker
 
                 Data.question = question;
                 Data.correctAnswers.AddRange(correctAnswers);
-                Data.allAnswers.AddRange(wrongAnswers);
+                Data.wrongAnswers.AddRange(wrongAnswers);
 
                 listOfAllQuizzes.Add(Data);
-
+                Console.Clear();
             }
             return listOfAllQuizzes;
         }
 
 
-        public static void PrintQuestionGameMode()
+        public static void PrintQuizzesGameMode(List<Quiz> listOfAllQuizzes)
         {
-            Console.WriteLine();
-        }
-
-        public static void PrintListOfAnswersGameMode(int numberOfAnswers, List<string> List)
-        {
-            for (int i = 0; i < numberOfAnswers; i++)
+            Console.WriteLine($"Here are the questions and answers you gave us, memorize them well!\r\n");
+            foreach (Quiz Data in listOfAllQuizzes)
             {
-                Console.WriteLine(List[i]);
+                Console.WriteLine($"Question: {Data.question}\r\n");
+                foreach (string correctAnswer in Data.correctAnswers)
+                {
+                    Console.WriteLine($"Correct Answers: {correctAnswer}\r\n");
+                }
+                Console.Write($"Wrong answers: \r\n");
+                foreach (string wrongAnswers in Data.wrongAnswers)
+                {
+                    Console.Write($"{wrongAnswers}\r\n");
+                }
+                Console.Write($"\r\n");
             }
         }
 
 
+        public static void PrintQuestionGameMode(string question)
+        {
+            Console.WriteLine($"Question: {question}");
+        }
+
         public static void PrintInstructionGameMode()
         {
-            Console.WriteLine("Welcome to the game! You will get random questions from the ones you gave us, and you need to give us the number of the correct answer" +
+            Console.WriteLine("Welcome to the game! You will get random questions from the ones you gave us, and you need to give us the correct answer" +
                 $"\r\nWith every win, you will get {Constants.WIN_POINTS} points, and with every mistake, you will lose {Constants.LOSE_POINTS} points");
         }
 
-
-        public static string GetAnswerFromPlayerGameMode()
+        public static string PrintMessageStayingInPlayerMode(string input)
         {
-            Console.WriteLine("Give us the number of the correct answer: \r\n");
-            string answer = Console.ReadLine();
+            Console.WriteLine($"Please select from the following options:\r\nPress N for Next Question\r\nPress Q to Quit Player Mode!");
+            input = Console.ReadLine().ToLower();
+            return input;
+        }
+
+
+        public static void PrintQuizIsEmptyMessage()
+        {
+            Console.WriteLine("You have not added any questions! Please, select Quizmaker mode and add some questions and answers!");
+        }
+
+        public static string GetAnswerFromPlayerGameMode(string answer)
+        {
+            Console.WriteLine("Give us the correct answer:");
+            answer = Console.ReadLine().ToLower();
             return answer;
         }
 
         public static void PrintWinMessageGameMode()
         {
-            Console.WriteLine("Good answer, you won!");
+            Console.WriteLine("Good answer, you won!\r\n");
         }
 
         public static void PrintLoseMessageGameMode()
         {
-            Console.WriteLine("This is not the correct answer, try again!");
+            Console.WriteLine("This is not the correct answer, try again!\r\n");
         }
 
         public static void PrintPointsGameMode(int points)
         {
-            Console.WriteLine($"You have {points} points at the moment!");
+            Console.WriteLine($"You have {points} points at the moment!\r\n");
         }
 
 

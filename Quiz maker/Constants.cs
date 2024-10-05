@@ -18,5 +18,7 @@ namespace Quiz_maker
         public const string PLAY = "p";
         public const string CLOSE = "c";
         public const string PATH = @"..\..\..\..\QuizData.xml";
+        public const string NEXT_QUESTION = "n";
+        public const string QUIT_PLAYERMODE = "q";
     }
 }

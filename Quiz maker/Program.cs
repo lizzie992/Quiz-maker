@@ -9,8 +9,9 @@ namespace Quiz_maker
         {
 
             string gameMode = string.Empty;
-            List<Quiz> listOfAllObjects = new List<Quiz>();
+            List<Quiz> listOfAllQuizzes = new List<Quiz>();
             Quiz Data = new Quiz();
+            int numberOfQuestions = 0;
 
             do
             {
@@ -23,47 +24,65 @@ namespace Quiz_maker
                 {
                     UserInterface.PrintInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
 
-                    int numberOfQuestions = 0;
                     numberOfQuestions = UserInterface.AskUserHowManyQuestionsQuizMaker(numberOfQuestions);
                     UserInterface.PressKeyToMoveOn();
                     UserInterface.ClearScreen();
 
-
-                    listOfAllObjects = UserInterface.CreateQuiz(numberOfQuestions, Data);
-                    LogicalCode.SaveQuizToFile(listOfAllObjects);
-                    UserInterface.PressKeyToMoveOn();
-                    UserInterface.ClearScreen(); 
+                    listOfAllQuizzes.AddRange(UserInterface.CreateQuiz(numberOfQuestions));
+                    LogicalCode.SaveQuizToFile(listOfAllQuizzes);
+                    UserInterface.ClearScreen();
                 }
 
                 if (gameMode == Constants.PLAY)
                 {
-                    Data.allAnswers.AddRange(Data.correctAnswers);
+
+                    if (!LogicalCode.DoesQuizFileExist())
+                    {
+                        UserInterface.PrintQuizIsEmptyMessage();
+                        UserInterface.PressKeyToMoveOn();
+                        UserInterface.ClearScreen();
+                        continue;
+                    }
+
                     int points = 0;
                     UserInterface.PrintInstructionGameMode();
+                    listOfAllQuizzes = LogicalCode.GetQuizFromFile();
 
-                    listOfAllObjects = LogicalCode.GetQuizFromFile(listOfAllObjects);
+                    UserInterface.PrintQuizzesGameMode(listOfAllQuizzes);
+                    UserInterface.PressKeyToMoveOn();
+                    UserInterface.ClearScreen();
 
-                    UserInterface.PrintQuestionGameMode();
-                    UserInterface.PrintListOfAnswersGameMode(Constants.NUMBER_OF_ALL_ANSWERS, Data.allAnswers);
-                    int answer = 0;
+                    string input = string.Empty;
                     do
                     {
-                        answer = Convert.ToInt32(UserInterface.GetAnswerFromPlayerGameMode());
-                        if (LogicalCode.CheckIfAnswerIsCorrect(answer, Data.allAnswers, Data.correctAnswers))
+                        Data = LogicalCode.GetRandomQuestionFromList(listOfAllQuizzes.Count, listOfAllQuizzes);
+
+                        UserInterface.PrintQuestionGameMode(Data.question);
+                        string answer = string.Empty;
+
+                        do
                         {
-                            UserInterface.PrintWinMessageGameMode();
-                            points = LogicalCode.WinPoints(points);
-                            UserInterface.PrintPointsGameMode(points);
-                            UserInterface.PressKeyToMoveOn();
-                            UserInterface.ClearScreen();
-                        }
-                        else
-                        {
-                            UserInterface.PrintLoseMessageGameMode();
-                            points = LogicalCode.LosePoints(points);
-                            UserInterface.PrintPointsGameMode(points);
-                        }
-                    } while (!LogicalCode.CheckIfAnswerIsCorrect(answer, Data.allAnswers, Data.correctAnswers));
+                            answer = UserInterface.GetAnswerFromPlayerGameMode(answer);
+                            if (LogicalCode.CheckIfAnswerIsCorrect(answer, Data.correctAnswers))
+                            {
+                                points = LogicalCode.WinPoints(points);
+                                UserInterface.PrintWinMessageGameMode();
+                                UserInterface.PrintPointsGameMode(points);
+                            }
+                            else
+                            {
+                                points = LogicalCode.LosePoints(points);
+                                UserInterface.PrintLoseMessageGameMode();
+                                UserInterface.PrintPointsGameMode(points);
+                            }
+                        } while (!LogicalCode.CheckIfAnswerIsCorrect(answer, Data.correctAnswers));
+
+                        input = UserInterface.PrintMessageStayingInPlayerMode(input);
+                        UserInterface.ClearScreen();
+
+                    } while (LogicalCode.StayInPlayerMode(input));
+
+                    UserInterface.ClearScreen();
                 }
 
                 if (gameMode == Constants.CLOSE)

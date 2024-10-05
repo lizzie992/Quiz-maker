@@ -15,7 +15,6 @@ namespace Quiz_maker
     public class LogicalCode
     {
 
-        
 
         public static void SaveQuizToFile(List<Quiz> listOfAllObjects)
         {
@@ -26,8 +25,9 @@ namespace Quiz_maker
             }
         }
 
-        public static List<Quiz> GetQuizFromFile(List<Quiz> listOfAllObjects)
+        public static List<Quiz> GetQuizFromFile()
         {
+            List<Quiz> listOfAllObjects = new List<Quiz>();
             XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
             using (FileStream file = File.OpenRead(Constants.PATH))
             {
@@ -37,26 +37,45 @@ namespace Quiz_maker
         }
 
 
-
-        Random random = new Random();
-        public int GetRandom(int numberOfQuestions)
+        public static bool DoesQuizFileExist()
         {
-            int number = random.Next(0, numberOfQuestions + 1);
-            return number;
+            bool DoesQuizFileExist = true;
+            if (!File.Exists(Constants.PATH))
+            {
+                DoesQuizFileExist = false;
+            }
+            return DoesQuizFileExist;
+        }
+
+        public static bool StayInPlayerMode(string input)
+        {
+            bool StayInPlayerMode = true;
+            if (input == Constants.NEXT_QUESTION)
+            {
+                StayInPlayerMode = true;
+            }
+            if (input == Constants.QUIT_PLAYERMODE)
+            {
+                StayInPlayerMode = false;
+            }
+            return StayInPlayerMode;
+        }
+
+        public static Quiz GetRandomQuestionFromList(int numberOfQuestions, List<Quiz> listOfAllObjects)
+        {
+            Random random = new Random();
+            int number = random.Next(0, numberOfQuestions);
+            Quiz Data = new Quiz();
+            Data = listOfAllObjects[number];
+            return Data;
         }
 
 
-        public static void GetRandomQuestionFromList(List<Quiz> listOfAllObjects)
-        {
 
-        }
-
-
-
-        public static bool CheckIfAnswerIsCorrect(int answer, List<string> allAnswers, List<string> correctAnswers)
+        public static bool CheckIfAnswerIsCorrect(string answer, List<string> correctAnswers)
         {
             bool checkAnswer = false;
-            if (correctAnswers.Contains(allAnswers[answer - 1]))
+            if (correctAnswers.Contains(answer))
             {
                 checkAnswer = true;
             }
