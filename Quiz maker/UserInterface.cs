@@ -29,7 +29,22 @@ namespace Quiz_maker
         public static int AskUserHowManyQuestionsQuizMaker(int numberOfQuestions)
         {
             Console.WriteLine($"Please give me the number, how many questions you would like to add this time: \r\n");
-            numberOfQuestions = Convert.ToInt32(Console.ReadLine());
+            string answer = string.Empty;
+            answer = Console.ReadLine();
+            bool success = false;
+            do
+            {
+                success = int.TryParse(answer, out numberOfQuestions);
+                if (success)
+                {
+                    numberOfQuestions = Convert.ToInt32(numberOfQuestions);
+                }
+                if (!success)
+                {
+                    Console.WriteLine("Please give me a valid number: ");
+                    answer = Console.ReadLine();
+                }
+            } while (!success);
             return numberOfQuestions;
         }
 
