@@ -22,7 +22,7 @@ namespace Quiz_maker
 
                 if (gameMode == Constants.QUIZMAKER)
                 {
-                    UserInterface.PrintInstructionQuizMaker(Constants.NUMBER_OF_ALL_ANSWERS, Constants.NUMBER_OF_CORRECT_ANSWERS);
+                    UserInterface.PrintInstructionQuizMaker();
 
                     numberOfQuestions = UserInterface.AskUserHowManyQuestionsQuizMaker(numberOfQuestions);
                     UserInterface.PressKeyToMoveOn();

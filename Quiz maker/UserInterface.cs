@@ -19,11 +19,11 @@ namespace Quiz_maker
         }
 
 
-        public static void PrintInstructionQuizMaker(int numberOfAllAnswers, int numberOfCorrectAnswers)
+        public static void PrintInstructionQuizMaker()
         {
             Console.WriteLine($"Welcome to our Quiz Maker game!\r\n" +
-                $"You will be asked to give us some questions, with {numberOfAllAnswers} answer options for each question.\r\n" +
-                $"{numberOfCorrectAnswers} of those answers have to be correct!\r\n");
+                $"You will be asked to give us some questions, with {Constants.NUMBER_OF_ALL_ANSWERS} answer options for each question.\r\n" +
+                $"{Constants.NUMBER_OF_CORRECT_ANSWERS} of those answers have to be correct!\r\n");
         }
 
         public static int AskUserHowManyQuestionsQuizMaker(int numberOfQuestions)
