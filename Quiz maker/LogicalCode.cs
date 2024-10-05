@@ -17,21 +17,21 @@ namespace Quiz_maker
 
         
 
-        public static void SaveQuizToFile(List<object> listOfAllObjects)
+        public static void SaveQuizToFile(List<Quiz> listOfAllObjects)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<object>), new[] { typeof(Quiz) });
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
             using (FileStream file = File.OpenWrite(Constants.PATH))
             {
                 serializer.Serialize(file, listOfAllObjects);
             }
         }
 
-        public static List<object> GetQuizFromFile(List<object> listOfAllObjects)
+        public static List<Quiz> GetQuizFromFile(List<Quiz> listOfAllObjects)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<object>));
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
             using (FileStream file = File.OpenRead(Constants.PATH))
             {
-                listOfAllObjects = serializer.Deserialize(file) as List<object>;
+                listOfAllObjects = serializer.Deserialize(file) as List<Quiz>;
             }
             return listOfAllObjects;
         }
@@ -46,7 +46,7 @@ namespace Quiz_maker
         }
 
 
-        public static void GetRandomQuestionFromList(List<object> listOfAllObjects)
+        public static void GetRandomQuestionFromList(List<Quiz> listOfAllObjects)
         {
 
         }

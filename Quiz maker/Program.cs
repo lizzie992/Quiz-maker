@@ -9,9 +9,8 @@ namespace Quiz_maker
         {
 
             string gameMode = string.Empty;
-
+            List<Quiz> listOfAllObjects = new List<Quiz>();
             Quiz Data = new Quiz();
-            List<object> listOfAllObjects = new List<object>();
 
             do
             {

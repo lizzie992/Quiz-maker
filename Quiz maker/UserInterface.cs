@@ -65,9 +65,9 @@ namespace Quiz_maker
 
 
 
-        public static List<object> CreateQuiz(int numberOfQuestions, Quiz Data)
+        public static List<Quiz> CreateQuiz(int numberOfQuestions, Quiz Data)
         {
-            List<object> listOfAllQuizzes = new List<object>();
+            List<Quiz> listOfAllQuizzes = new List<Quiz>();
 
             for (int i = 0; i < numberOfQuestions; i++)
             {
