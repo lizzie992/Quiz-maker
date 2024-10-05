@@ -80,14 +80,13 @@ namespace Quiz_maker
         }
 
 
-        public static Quiz Data = new Quiz();
         public static List<Quiz> CreateQuiz(int numberOfQuestions)
         {
 
             List<Quiz> listOfAllQuizzes = new List<Quiz>();
             for (int i = 0; i < numberOfQuestions; i++)
             {
-                Data = new Quiz();
+                Quiz Data = new Quiz();
                 string question = string.Empty;
                 List<string> correctAnswers = new List<string>();
                 List<string> wrongAnswers = new List<string>();
