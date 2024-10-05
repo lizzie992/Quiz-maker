@@ -39,26 +39,12 @@ namespace Quiz_maker
 
         public static bool DoesQuizFileExist()
         {
-            bool DoesQuizFileExist = true;
-            if (!File.Exists(Constants.PATH))
-            {
-                DoesQuizFileExist = false;
-            }
-            return DoesQuizFileExist;
+            return File.Exists(Constants.PATH);
         }
 
         public static bool StayInPlayerMode(string input)
         {
-            bool StayInPlayerMode = true;
-            if (input == Constants.NEXT_QUESTION)
-            {
-                StayInPlayerMode = true;
-            }
-            if (input == Constants.QUIT_PLAYERMODE)
-            {
-                StayInPlayerMode = false;
-            }
-            return StayInPlayerMode;
+            return input == Constants.NEXT_QUESTION;
         }
 
         public static Quiz GetRandomQuestionFromList(int numberOfQuestions, List<Quiz> listOfAllObjects)
