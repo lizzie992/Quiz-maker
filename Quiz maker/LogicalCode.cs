@@ -47,8 +47,7 @@ namespace Quiz_maker
 
         public static Quiz GetRandomQuestionFromList(int numberOfQuestions, List<Quiz> listOfAllObjects)
         {
-            Random random = new Random();
-            int number = random.Next(0, numberOfQuestions);
+            int number = RandomClass.random.Next(0, numberOfQuestions);
             Quiz Data = new Quiz();
             Data = listOfAllObjects[number];
             return Data;
