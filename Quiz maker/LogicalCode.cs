@@ -18,20 +18,18 @@ namespace Quiz_maker
 
         public static void SaveQuizToFile(List<Quiz> listOfAllObjects)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
             using (FileStream file = File.OpenWrite(Constants.PATH))
             {
-                serializer.Serialize(file, listOfAllObjects);
+                Serializer.serializer.Serialize(file, listOfAllObjects);
             }
         }
 
         public static List<Quiz> GetQuizFromFile()
         {
             List<Quiz> listOfAllObjects = new List<Quiz>();
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
             using (FileStream file = File.OpenRead(Constants.PATH))
             {
-                listOfAllObjects = serializer.Deserialize(file) as List<Quiz>;
+                listOfAllObjects = Serializer.serializer.Deserialize(file) as List<Quiz>;
             }
             return listOfAllObjects;
         }
