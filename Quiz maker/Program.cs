@@ -21,7 +21,7 @@ namespace Quiz_maker
                 gameMode = Console.ReadLine().ToLower();
                 UserInterface.PressKeyToMoveOn();
                 UserInterface.ClearScreen();
-                Quiz Data = new Quiz();
+                
 
                 if (gameMode == Constants.QUIZMAKER)
                 {
@@ -38,7 +38,7 @@ namespace Quiz_maker
 
                 if (gameMode == Constants.PLAY)
                 {
-
+                    Quiz Data = new Quiz();
                     if (!LogicalCode.DoesQuizFileExist())
                     {
                         UserInterface.PrintQuizIsEmptyMessage();
