@@ -23,7 +23,7 @@ namespace Quiz_maker
                 UserInterface.ClearScreen();
                 
 
-                if (gameMode == Constants.QUIZMAKER)
+                if (gameMode == Constants.QUIZ_MAKER)
                 {
                     UserInterface.PrintInstructionQuizMaker();
 
