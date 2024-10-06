@@ -11,7 +11,6 @@ namespace Quiz_maker
 
             string gameMode = string.Empty;
             List<Quiz> listOfAllQuizzes = new List<Quiz>();
-            Quiz Data = new Quiz();
             int numberOfQuestions = 0;
 
 
@@ -22,6 +21,7 @@ namespace Quiz_maker
                 gameMode = Console.ReadLine().ToLower();
                 UserInterface.PressKeyToMoveOn();
                 UserInterface.ClearScreen();
+                Quiz Data = new Quiz();
 
                 if (gameMode == Constants.QUIZMAKER)
                 {
