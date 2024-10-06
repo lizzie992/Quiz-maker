@@ -113,30 +113,21 @@ namespace Quiz_maker
         }
 
 
-        public static void PrintQuizzesGameMode(List<Quiz> listOfAllQuizzes)
-        {
-            Console.WriteLine($"Here are the questions and answers you gave us, memorize them well!\r\n");
-            foreach (Quiz Data in listOfAllQuizzes)
-            {
-                Console.WriteLine($"Question: {Data.question}\r\n");
-                foreach (string correctAnswer in Data.correctAnswers)
-                {
-                    Console.WriteLine($"Correct Answers: {correctAnswer}\r\n");
-                }
-                Console.Write($"Wrong answers: \r\n");
-                foreach (string wrongAnswers in Data.wrongAnswers)
-                {
-                    Console.Write($"{wrongAnswers}\r\n");
-                }
-                Console.Write($"\r\n");
-            }
-        }
-
-
         public static void PrintQuestionGameMode(string question)
         {
             Console.WriteLine($"Question: {question}");
         }
+
+        public static void PrintAnswersGameMode(List<string> listOfAllAnswers)
+        {
+            Console.WriteLine($"Answers: ");
+            foreach (string answer in listOfAllAnswers)
+            {
+                Console.WriteLine(answer);
+            }
+
+        }
+
 
         public static void PrintInstructionGameMode()
         {

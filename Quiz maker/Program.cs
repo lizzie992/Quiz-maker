@@ -48,19 +48,21 @@ namespace Quiz_maker
                     }
 
                     int points = 0;
-                    UserInterface.PrintInstructionGameMode();
                     listOfAllQuizzes = LogicalCode.GetQuizFromFile();
+                    string input = string.Empty;
 
-                    UserInterface.PrintQuizzesGameMode(listOfAllQuizzes);
+                    UserInterface.PrintInstructionGameMode();                    
                     UserInterface.PressKeyToMoveOn();
                     UserInterface.ClearScreen();
 
-                    string input = string.Empty;
                     do
                     {
                         Data = LogicalCode.GetRandomQuestionFromList(listOfAllQuizzes.Count, listOfAllQuizzes);
-
                         UserInterface.PrintQuestionGameMode(Data.question);
+                        List<string> listOfAllAnswers = new List<string>();
+                        listOfAllAnswers = LogicalCode.getAllAnswersInRandomOrder(Data.correctAnswers, Data.wrongAnswers);
+                        UserInterface.PrintAnswersGameMode(listOfAllAnswers);
+
                         string answer = string.Empty;
 
                         do

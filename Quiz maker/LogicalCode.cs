@@ -15,12 +15,15 @@ namespace Quiz_maker
     public class LogicalCode
     {
 
+        public static XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
+
+        public static Random random = new Random();
 
         public static void SaveQuizToFile(List<Quiz> listOfAllObjects)
         {
             using (FileStream file = File.OpenWrite(Constants.PATH))
             {
-                Serializer.serializer.Serialize(file, listOfAllObjects);
+                serializer.Serialize(file, listOfAllObjects);
             }
         }
 
@@ -29,7 +32,7 @@ namespace Quiz_maker
             List<Quiz> listOfAllObjects = new List<Quiz>();
             using (FileStream file = File.OpenRead(Constants.PATH))
             {
-                listOfAllObjects = Serializer.serializer.Deserialize(file) as List<Quiz>;
+                listOfAllObjects = serializer.Deserialize(file) as List<Quiz>;
             }
             return listOfAllObjects;
         }
@@ -40,6 +43,16 @@ namespace Quiz_maker
             return File.Exists(Constants.PATH);
         }
 
+        public static List<string> getAllAnswersInRandomOrder(List<string> correctAnswers, List<string> wrongAnswers)
+        {
+            List<string> listOfAllAnswers = new List<string>();
+            listOfAllAnswers.AddRange(correctAnswers);
+            listOfAllAnswers.AddRange(wrongAnswers);
+            listOfAllAnswers = listOfAllAnswers.OrderBy(x => Random.Shared.Next()).ToList();
+            return listOfAllAnswers;
+        }
+
+
         public static bool StayInPlayerMode(string input)
         {
             return input == Constants.NEXT_QUESTION;
@@ -47,7 +60,7 @@ namespace Quiz_maker
 
         public static Quiz GetRandomQuestionFromList(int numberOfQuestions, List<Quiz> listOfAllObjects)
         {
-            int number = RandomClass.random.Next(0, numberOfQuestions);
+            int number = random.Next(0, numberOfQuestions);
             Quiz Data = new Quiz();
             Data = listOfAllObjects[number];
             return Data;
