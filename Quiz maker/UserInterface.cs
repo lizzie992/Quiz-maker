@@ -59,10 +59,10 @@ namespace Quiz_maker
             Console.Clear();
         }
 
-        public static string GetQuestionFromUserQuizMaker(string question)
+        public static string GetQuestionFromUserQuizMaker()
         {
             Console.WriteLine($"Please give me your next question: ");
-            question = Console.ReadLine();
+            string question = Console.ReadLine();
             return question;
         }
 
@@ -91,7 +91,7 @@ namespace Quiz_maker
                 List<string> correctAnswers = new List<string>();
                 List<string> wrongAnswers = new List<string>();
 
-                question = GetQuestionFromUserQuizMaker(question);
+                question = GetQuestionFromUserQuizMaker();
 
                 for (int j = 0; j < Constants.NUMBER_OF_CORRECT_ANSWERS; j++)
                 {
