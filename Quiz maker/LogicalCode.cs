@@ -14,6 +14,7 @@ namespace Quiz_maker
 {
     public class LogicalCode
     {
+        public static Quiz Data = new Quiz();
 
         public static XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
 
@@ -61,7 +62,6 @@ namespace Quiz_maker
         public static Quiz GetRandomQuestionFromList(int numberOfQuestions, List<Quiz> listOfAllObjects)
         {
             int number = random.Next(0, numberOfQuestions);
-            Quiz Data = new Quiz();
             Data = listOfAllObjects[number];
             return Data;
         }
