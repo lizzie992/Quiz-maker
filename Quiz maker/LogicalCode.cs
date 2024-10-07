@@ -44,7 +44,7 @@ namespace Quiz_maker
             return File.Exists(Constants.PATH);
         }
 
-        public static List<string> getAllAnswersInRandomOrder(List<string> correctAnswers, List<string> wrongAnswers)
+        public static List<string> GetAllAnswersInRandomOrder(List<string> correctAnswers, List<string> wrongAnswers)
         {
             List<string> listOfAllAnswers = new List<string>();
             listOfAllAnswers.AddRange(correctAnswers);

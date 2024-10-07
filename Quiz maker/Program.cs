@@ -60,7 +60,7 @@ namespace Quiz_maker
                         Data = LogicalCode.GetRandomQuestionFromList(listOfAllQuizzes.Count, listOfAllQuizzes);
                         UserInterface.PrintQuestionGameMode(Data.question);
                         List<string> listOfAllAnswers = new List<string>();
-                        listOfAllAnswers = LogicalCode.getAllAnswersInRandomOrder(Data.correctAnswers, Data.wrongAnswers);
+                        listOfAllAnswers = LogicalCode.GetAllAnswersInRandomOrder(Data.correctAnswers, Data.wrongAnswers);
                         UserInterface.PrintAnswersGameMode(listOfAllAnswers);
 
                         string answer = string.Empty;
