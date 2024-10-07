@@ -70,12 +70,7 @@ namespace Quiz_maker
 
         public static bool CheckIfAnswerIsCorrect(string answer, List<string> correctAnswers)
         {
-            bool checkAnswer = false;
-            if (correctAnswers.Contains(answer))
-            {
-                checkAnswer = true;
-            }
-            return checkAnswer;
+            return correctAnswers.Contains(answer);
         }
 
         public static int WinPoints(int points)
