@@ -80,13 +80,13 @@ namespace Quiz_maker
 
         public static int WinPoints(int points)
         {
-            points = points + Constants.WIN_POINTS;
+            points += Constants.WIN_POINTS;
             return points;
         }
 
         public static int LosePoints(int points)
         {
-            points = points - Constants.LOSE_POINTS;
+            points -= Constants.LOSE_POINTS;
             return points;
         }
     }
