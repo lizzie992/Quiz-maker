@@ -1,5 +1,4 @@
-﻿using System.Net.Quic;
-using System.Security.Cryptography.X509Certificates;
+﻿
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Quiz_maker
@@ -11,13 +10,13 @@ namespace Quiz_maker
 
             string gameMode = string.Empty;
             List<Quiz> listOfAllQuizzes = new List<Quiz>();
-            int numberOfQuestions = 0;
+            int numberOfQuestions = 0; 
 
-
+             
 
             do
             {
-                UserInterface.PrintInstructionMenu();
+                UserInterface.PrintInstructionMenu(); 
                 gameMode = Console.ReadLine().ToLower();
                 UserInterface.PressKeyToMoveOn();
                 UserInterface.ClearScreen();
